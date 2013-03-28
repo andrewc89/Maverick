@@ -1,0 +1,99 @@
+﻿@model Maverick.ViewModels.HomeVM
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<link href="@Url.Content("~/Content/Home/Index.css")" rel="stylesheet" type="text/css" />
+
+<h2>Index</h2>
+
+<div class="hero-unit objects">
+
+    @foreach (var Type in Model.Objects)
+    {
+        <a href="@Url.Action("List", Type)">@Type</a><br />
+    }
+
+</div>
+
+<div class="hero-unit outline">
+    <h3>Forms API</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Verb</th>
+                <th>URL</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>GET</td>
+                <td>{Object}/List</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>{Object}/Create</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>{Object}/Edit/{ID}</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>{Object}/Edit/{ID}/{Property}</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>{Object}/Edit/{ID}/{Property}/{PropertyID}</td>
+            </tr>
+        </tbody>
+    </table>
+    <h3>JSON API</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Verb</th>
+                <th>URL</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>GET</td>
+                <td>{Object}/List.json</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>{Object}/{ID}[.json]</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>{Object}/{ID}/{Property}[.json]</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>{Object}/{ID}/{Property}/{PropertyID}[.json]</td>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td>{Object}[.json]</td>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td>{Object}/{ID}/{Property}[.json]*</td>
+            </tr>
+            <tr>
+                <td>PUT</td>
+                <td>{Object}/{ID}[.json]</td>
+            </tr>
+            <tr>
+                <td>DELETE</td>
+                <td>{Object}/{ID}[.json]</td>
+            </tr>
+        </tbody>
+    </table>
+    <p>[] = optional</p>
+    <p>* = Adds a new element to an IEnumerable property</p>
+</div>
+
+<br class="clear" /><br />

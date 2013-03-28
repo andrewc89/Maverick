@@ -1,0 +1,13 @@
+﻿@model Admin.Models.Form.Builder.Form
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit @ViewBag.Type</h2>
+
+<div class="hero-unit">
+    
+    @Html.Raw(Model.ToHtml())
+
+</div>

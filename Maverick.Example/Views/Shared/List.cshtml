@@ -1,0 +1,19 @@
+﻿@model List<Maverick.ViewModels.ListVM>
+
+@{
+    ViewBag.Title = ViewBag.Type;
+}
+
+<h2>@ViewBag.Type</h2>
+
+<a href="@Url.Action("Create", ViewBag.Type)">New @ViewBag.Type</a><br /><br />
+
+<div class="hero-unit">
+
+@foreach (var Entity in Model.OrderBy(x => x.DisplayName))
+{    
+    <a href="@Url.Action("Edit", ViewBag.Type, new { Id = Entity.Id })">@(string.IsNullOrEmpty(Entity.DisplayName) ? "Edit" : Entity.DisplayName)</a>
+    <br />
+}
+
+</div>

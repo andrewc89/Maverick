@@ -1,0 +1,13 @@
+﻿@model Admin.Models.Form.Builder.Form
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>New @ViewContext.RouteData.Values["Controller"]</h2>
+
+<div class="hero-unit">
+    
+    @Html.Raw(@Model.ToHtml())
+
+</div>

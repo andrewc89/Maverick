@@ -1,0 +1,15 @@
+﻿
+/*
+ *  /Objects
+ *
+ */
+ 
+ .hero-unit {
+	width: 45%;
+	display: inline-block;
+	float: left;
+}
+
+.outline {
+	margin-left: 30px;
+}
