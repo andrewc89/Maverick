@@ -14,7 +14,7 @@ namespace Maverick.Helpers
     internal static class Reflectively
     {
         /// <summary>
-        /// adds an item, represented by the Dict VM, to a list, if it exists,
+        /// Adds an item, represented by the Dict VM, to a list, if it exists,
         /// which is a property of the given Model
         /// </summary>
         /// <param name="Model">Model (T from controller), which has a property which is a list of some other IModelBase</param>
@@ -39,23 +39,19 @@ namespace Maverick.Helpers
             return false;
         }
 
-        internal static object GetPropertyInstance (IModelBase Model, string PropertyName)
-        {
-            return Model.GetType().GetProperty(PropertyName).GetValue(Model, null);            
-        }
-
-        internal static Type GetPropertyType (IModelBase Model, string PropertyName)
-        {
-            return Model.GetType().GetProperty(PropertyName).PropertyType;
-        }
-
-        internal static object GetListItem (IEnumerable List, long Id)
+        /// <summary>
+        /// Given an IEnumerable, retrieves the entry, if it exists, specified by ID
+        /// </summary>
+        /// <param name="List">IEnumerable from which to retrieve item</param>
+        /// <param name="ID">ID of item to retrieve</param>
+        /// <returns>Item from IEnumerable specified by ID</returns>
+        internal static object GetListItem (IEnumerable List, long ID)
         {
             var ItemType = List.GetType().GetGenericArguments()[0];
             var ItemId = ItemType.GetProperty("ID");
             foreach (var Item in (IEnumerable)List)
             {
-                if ((long)ItemId.GetValue(Item, null) == Id)
+                if ((long)ItemId.GetValue(Item, null) == ID)
                 {
                     return ViewModel.Construct(Item, ItemType);
                 }

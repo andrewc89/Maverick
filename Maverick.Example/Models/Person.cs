@@ -5,16 +5,11 @@ using System.Web;
 
 namespace MaverickExample.Models
 {
-    public class Person : Maverick.Models.ModelBase<Person>
+    public class Person : Maverick.Example.Models.ModelBase<Person>
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public SocialStatus Status { get; set; }
-
-        public override void Save ()
-        {
-            throw new NotImplementedException();
-        }
 
         public override string ToString ()
         {

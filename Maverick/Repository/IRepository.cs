@@ -3,12 +3,13 @@ using Maverick.Models;
 
 namespace Maverick.Repository
 {
-    public interface IRepository<T> where T : class, IModelBase
+    public interface IRepository<T>
+        where T : class, IModelBase, new()
     {
-        T Get (long Id);
+        T Get (long ID);
         bool Add (T Entity);
         bool Update (T Entity);
-        bool Delete (long Id);
+        bool Delete (long ID);
         IEnumerable<T> All();
     }
 }

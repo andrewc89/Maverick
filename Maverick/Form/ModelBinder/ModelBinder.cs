@@ -1,24 +1,24 @@
-﻿
+﻿using System;
+using System.Linq;
+using System.Web.Mvc;
+using System.Reflection;
+
 namespace Maverick.Form.ModelBinder
 {
-    using System;
-    using System.Linq;
-    using System.Web.Mvc;
-    using System.Reflection;
-
     /// <summary>
     /// generic model binder
     /// </summary>
     public class ModelBinder : DefaultModelBinder
     {
         /// <summary>
-        /// bind form data to object
+        /// Generic ModelBinder implementation to bind form data to 
+        /// any object inheriting from IModelBase
         /// </summary>
         /// <param name="controllerContext">controller context</param>
         /// <param name="bindingContext">binding context</param>
         /// <returns>form data-bound object</returns>
         public override object BindModel (ControllerContext controllerContext, ModelBindingContext bindingContext)
-        {
+        {            
             var ModelType = bindingContext.ModelType;
             var Instance = Activator.CreateInstance(ModelType);
             var Form = bindingContext.ValueProvider;
@@ -32,13 +32,16 @@ namespace Maverick.Form.ModelBinder
                     if (!PropertyType.FullName.StartsWith("System") && Form.GetValue(Property.Name + ".ID") != null && !string.IsNullOrEmpty(Form.GetValue(Property.Name + ".ID").AttemptedValue))
                     {
                         var Load = PropertyType.GetMethod("Load", BindingFlags.Public | BindingFlags.FlattenHierarchy | BindingFlags.Static, null, new Type[] { typeof(long) }, null);
-                        var Value = Load.Invoke(new object(), new object[] { long.Parse(Form.GetValue(Property.Name + ".ID").AttemptedValue) });
-                        Property.SetValue(Instance, Value, null);
+                        if (Load != null)
+                        {
+                            var Value = Load.Invoke(new object(), new object[] { long.Parse(Form.GetValue(Property.Name + ".ID").AttemptedValue) });
+                            Property.SetValue(Instance, Value, null);
+                        }
                     }
                     else if (PropertyType.Equals(typeof(bool)))
                     {
                         if (Form.GetValue(Property.Name) == null)
-                        {                           
+                        {
                             Property.SetValue(Instance, false, null);
                         }
                         else //if (Form.GetValue(Property.Name).AttemptedValue.Equals("on"))
@@ -55,7 +58,6 @@ namespace Maverick.Form.ModelBinder
                     }
                 }
             }
-
             return Instance;
         }
     }

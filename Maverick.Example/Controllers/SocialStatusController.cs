@@ -11,7 +11,7 @@ namespace MaverickExample.Controllers
     {
         public SocialStatusController ()
         {
-            this.Repository = new MaverickExample.Repository.SocialStatusRepository();
+            this.Repository = new Maverick.Example.Repository.Repository<SocialStatus>();
         }
 
         public override ActionResult Create ()
@@ -19,9 +19,9 @@ namespace MaverickExample.Controllers
             return View(Maverick.Form.Builder.FormFactory.Create(typeof(SocialStatus)));
         }
 
-        public override ActionResult EditModel (long Id)
+        public override ActionResult EditModel (long ID)
         {
-            return View(Maverick.Form.Builder.FormFactory.Create(typeof(SocialStatus), Repository.Get(Id)));
+            return View(Maverick.Form.Builder.FormFactory.Create(typeof(SocialStatus), Repository.Get(ID)));
         }
     }
 }
