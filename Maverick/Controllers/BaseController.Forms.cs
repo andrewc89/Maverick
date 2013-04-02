@@ -28,7 +28,6 @@ namespace Maverick.Controllers
         /// instantiates new Repository of type T
         /// </summary>
         public BaseController ()
-            : base()
         {            
         }
 
@@ -37,7 +36,6 @@ namespace Maverick.Controllers
         /// </summary>
         /// <param name="Repository">IRepository</param>
         public BaseController (IRepository<T> Repository)
-            : base()
         {
             if (Repository == null)
             {

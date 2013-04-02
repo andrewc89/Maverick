@@ -6,12 +6,12 @@ using MaverickExample.Models;
 
 namespace Maverick.Example.Database
 {
-    public class MockDb
+    internal class MockDb
     {
         internal Dictionary<long, SocialStatus> SocialStatuses;
         internal Dictionary<long, Person> Persons;
      
-        public MockDb ()
+        internal MockDb ()
         {
             SocialStatuses = new Dictionary<long, SocialStatus>
             {
