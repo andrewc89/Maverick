@@ -11,7 +11,7 @@ namespace MaverickExample.Controllers
     {
         public SocialStatusController ()
         {
-            this.Repository = new Maverick.Example.Repository.Repository<SocialStatus>();
+            this.Repository = new Maverick.Example.Repository.SocialStatusRepository();
         }
 
         public override ActionResult Create ()

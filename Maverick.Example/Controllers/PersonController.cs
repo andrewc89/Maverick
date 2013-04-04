@@ -10,12 +10,12 @@ namespace MaverickExample.Controllers
 {
     public class PersonController : Maverick.Controllers.BaseController<Person>
     {
-        private Maverick.Example.Repository.Repository<SocialStatus> SocialStatusRepository;
+        private Maverick.Example.Repository.SocialStatusRepository SocialStatusRepository;
 
         public PersonController ()
         {
-            this.Repository = new Maverick.Example.Repository.Repository<Person>();
-            this.SocialStatusRepository = new Maverick.Example.Repository.Repository<SocialStatus>();
+            this.Repository = new Maverick.Example.Repository.PersonRepository();
+            this.SocialStatusRepository = new Maverick.Example.Repository.SocialStatusRepository();
         }
 
         public override ActionResult Create ()
